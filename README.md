@@ -9,9 +9,9 @@ A lightweight library with support for multiple requests.
 [![License](https://poser.pugx.org/pahanini/curl/license.svg)](https://packagist.org/packages/pahanini/curl)
 [![Total Downloads](https://poser.pugx.org/pahanini/curl/downloads.svg)](https://packagist.org/packages/pahanini/curl)
 
-## Documentation
+## Usage
 
-Send single request example:
+Single request example:
 ```php
 	$request = new Request();
 	$request->url('http://google.com')->execute();
@@ -21,8 +21,7 @@ Send single request example:
 	echo $response->content; // displays content of the page
 ```
 
-
-Send multi request example:
+Multi request example:
 ```php
 	$request1 = new Request();
 	$request1->url('http://google.com');
@@ -34,7 +33,26 @@ Send multi request example:
 	$multi->add($request1);
 	$multi->add($request2);
 	$multi->execute();
+
+	echo $response1->statusCode; // displays 200
+	echo $response2->statusCode; // displays 200
 ```
+
+Set cURL options example and getting response headers:
+```php
+	$request = new Request();
+	$request->url('http://example.com')->setOptions([CURLOPT_USERAGENT => 'Custom super agent']);
+	$response = $request->execute()->getResponse();
+
+	echo $response->getHeader('Content-Type'); // outputs Content-Type header value
+```
+
+Getting raw response example:
+```php
+	$request = new Request();
+	$rawResponse = $request->url('http://example.com')->execute()->getRawResponse();
+```
+
 
 ## Testing
 
