@@ -1,5 +1,6 @@
-# A cURL library with support for multiple requests
+# A Yii2 cURL library
 
+A lightweight library with support for multiple requests.
 
 
 [![Build Status](https://travis-ci.org/pahanini/yii2-curl.svg)](https://travis-ci.org/pahanini/yii2-curl)
