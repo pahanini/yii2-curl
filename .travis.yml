@@ -11,5 +11,4 @@ install:
   - travis_retry composer update --no-interaction
 
 script:
-  - codecept run
-
+  - vendor/bin/codecept run
