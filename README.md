@@ -1,5 +1,10 @@
 # A cURL library with support for multiple requests
 
+
+
+[![Build Status](https://travis-ci.org/pahanini/yii2-curl.svg)](https://travis-ci.org/pahanini/yii2-curl)
+
+
 ## Documentation
 
 Send single request example:
@@ -26,3 +31,9 @@ Send multi request example:
 	$multi->add($request2);
 	$multi->execute();
 ```
+
+## Testing
+
+- run `composer install`
+- run `codecept build`
+- run `codecept run`
