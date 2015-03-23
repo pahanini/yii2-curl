@@ -30,6 +30,7 @@ Multi request example:
 	$request2->url('http://bing.com');
 
 	$multi = new Multi();
+	$multi->stackSize = 100; // all requests are stacked, set stack size here!
 	$multi->add($request1);
 	$multi->add($request2);
 	$multi->execute();
