@@ -1,5 +1,5 @@
 {
-	"name": "pahanini/curl",
+	"name": "pahanini/yii2-curl",
 	"description": "A Yii2 cURL library with support of multiple requests.",
 	"keywords": ["yii2", "curl"],
 	"homepage": "https://github.com/pahanini/yii2-curl",

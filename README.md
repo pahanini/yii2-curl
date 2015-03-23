@@ -41,7 +41,7 @@ Multi request example:
 Set cURL options example and getting response headers:
 ```php
 	$request = new Request();
-	$request->url('http://example.com')->setOptions([CURLOPT_USERAGENT => 'Custom super agent']);
+	$request->url('http://example.com')->setOptions([CURLOPT_USERAGENT => 'Custom']);
 	$response = $request->execute()->getResponse();
 
 	echo $response->getHeader('Content-Type'); // outputs Content-Type header value
@@ -52,7 +52,6 @@ Getting raw response example:
 	$request = new Request();
 	$rawResponse = $request->url('http://example.com')->execute()->getRawResponse();
 ```
-
 
 ## Testing
 
