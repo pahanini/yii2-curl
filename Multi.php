@@ -19,19 +19,14 @@ use yii\base\Object;
 class Multi extends Object
 {
     /**
-     * @var array All requests
-     */
-    protected $requests = array();
-
-    /**
      * @var int Stack size of requests
      */
     public $stackSize = 50;
 
     /**
-     * @var resource The cURL resource attached.
+     * @var array Keeps all this requests
      */
-    private $_handle;
+    private $_requests = array();
 
     /**
      * Adds a Request
@@ -43,7 +38,7 @@ class Multi extends Object
         if ($request->isExecuted()) {
             throw new InvalidParamException("Can not add executed request");
         }
-        $this->requests[] = $request;
+        $this->_requests[] = $request;
     }
 
     /**
@@ -55,11 +50,11 @@ class Multi extends Object
             throw new InvalidConfigException("stackSize param expected to be greater then zero");
         }
 
-        if (count($this->requests) < 1) {
+        if (count($this->_requests) < 1) {
             throw new InvalidCallException("No requests added");
         }
 
-        $stacks = array_chunk($this->requests, $stackSize);
+        $stacks = array_chunk($this->_requests, $stackSize);
         $multiHandle = curl_multi_init();
 
         foreach ($stacks as $requests) {
