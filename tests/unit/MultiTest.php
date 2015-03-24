@@ -17,6 +17,7 @@ class MultiTest extends \PHPUnit_Framework_TestCase
         $multi->add($requestUserAgent);
         $multi->execute();
 
+        $this->assertEquals(2, count($multi->getRequests()));
         $this->assertEquals(200, $requestIp->getResponse()->statusCode);
         $this->assertEquals(200, $requestUserAgent->getResponse()->statusCode);
     }

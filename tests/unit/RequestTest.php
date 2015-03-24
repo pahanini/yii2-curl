@@ -40,4 +40,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('Tester', $content['user-agent']);
     }
+
+    public function testUrlOptions()
+    {
+        $url = 'http://httpbin.org/';
+        $request = new Request();
+        $request->setOptions([CURLOPT_URL => $url]);
+        $this->assertEquals($url, $request->url);
+    }
 }

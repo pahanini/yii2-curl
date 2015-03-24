@@ -75,4 +75,12 @@ class Multi extends Object
         }
         curl_multi_close($multiHandle);
     }
+
+    /**
+     * @return \pahanini\curl\Request[] Array of [[\pahanini\curl\Request]] attached
+     */
+    public function getRequests()
+    {
+        return $this->_requests;
+    }
 }

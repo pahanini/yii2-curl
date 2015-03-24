@@ -127,7 +127,7 @@ class Request extends Object
     }
 
     /**
-     * Get the response.
+     * Get the response
      *
      * @return array
      */
@@ -139,12 +139,19 @@ class Request extends Object
     }
 
     /**
-     * Sets an option for the request.
+     * Sets an option for the request
+     *
+     * On attempt to set CURLOPT_URL option function will change current [[$url]] and remove CURLOPT_URL
+     * from array. So next call of [[getOptions]] will return array without CURLOPT_URL key.
      *
      * @param [] $options
      */
     public function setOptions(array $options)
     {
+        if (isset($options[CURLOPT_URL])) {
+            $this->url = $options[CURLOPT_URL];
+            unset($options[CURLOPT_URL]);
+        }
         $this->_options = $options + $this->_options;
     }
 
@@ -179,7 +186,7 @@ class Request extends Object
     }
 
     /**
-     * If the request has been executed.
+     * Whether the request has been executed
      *
      * @return boolean
      */
