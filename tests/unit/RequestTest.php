@@ -45,7 +45,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $url = 'http://httpbin.org/';
         $request = new Request();
-        $request->setOptions([CURLOPT_URL => $url]);
+        $request->setOption(CURLOPT_URL, $url);
         $this->assertEquals($url, $request->url);
     }
 }

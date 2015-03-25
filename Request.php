@@ -107,6 +107,18 @@ class Request extends Object
     }
 
     /**
+     * Returns option with given name
+     *
+     * @param string $name Name of the option
+     * @param string $default Default value
+     * @return mixed
+     */
+    public function getOption($name, $default = null)
+    {
+        return isset($this->_options[$name]) ? $this->_options[$name] : $default;
+    }
+
+    /**
      * Returns options array
      *
      * @return string
@@ -140,6 +152,19 @@ class Request extends Object
 
     /**
      * Sets an option for the request
+     *
+     * On attempt to set CURLOPT_URL option function will change current [[$url]].
+     * So next call of [[getOptions]] will return array without CURLOPT_URL key.
+     *
+     * @param [] $options
+     */
+    public function setOption($option, $value)
+    {
+        $this->setOptions([$option => $value]);
+    }
+
+    /**
+     * Sets an options for the request in massive way
      *
      * On attempt to set CURLOPT_URL option function will change current [[$url]] and remove CURLOPT_URL
      * from array. So next call of [[getOptions]] will return array without CURLOPT_URL key.
