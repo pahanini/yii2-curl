@@ -7,6 +7,20 @@ use Yii;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @expectedException \pahanini\curl\Exception
+     */
+    public function testException()
+    {
+        $request = new Request();
+        $request->setOptions([
+            CURLOPT_CONNECTTIMEOUT_MS => 1,
+            CURLOPT_TIMEOUT_MS => 1,
+            CURLOPT_URL => "http://httpbin.org/delay/3",
+        ]);
+        $request->execute();
+    }
+
     public function testClone()
     {
         $request1 = new Request();

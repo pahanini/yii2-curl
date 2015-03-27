@@ -215,9 +215,7 @@ class Request extends Object
      */
     public function execute()
     {
-        $handle = $this->getHandle();
-        curl_setopt_array($handle, $this->_options);
-        if (($this->_rawResponse  = curl_exec($handle)) === false) {
+        if (($this->_rawResponse  = curl_exec($this->getHandle())) === false) {
             throw new Exception($this->getErrorMessage());
         }
         $this->_is_executed = true;
