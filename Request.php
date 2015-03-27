@@ -144,13 +144,14 @@ class Request extends Object
     /**
      * Get the response
      *
-     * @return array
+     * @return \pahanini\curl\Response
      */
     public function getResponse()
     {
         if (!$this->_response) {
-            return $this->_response = new Response(['request' => $this]);
+            $this->_response = new Response(['request' => $this]);
         }
+        return $this->_response;
     }
 
     /**
@@ -193,6 +194,7 @@ class Request extends Object
     public function setRawResponse($value, $isExecuted = true)
     {
         $this->_rawResponse = $value;
+        $this->_response = null;
         $this->_is_executed = $isExecuted;
     }
 
