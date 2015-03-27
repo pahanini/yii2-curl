@@ -7,6 +7,15 @@ use Yii;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
+    public function testClone()
+    {
+        $request1 = new Request();
+        $request1->url = 'http://httpbin.org';
+        $request2 = clone $request1;
+        $this->assertFalse($request1->getHandle() === $request2->getHandle());
+        $this->assertTrue($request1->url == $request2->url);
+    }
+
     public function testOptions()
     {
         $request = new Request();

@@ -15,6 +15,8 @@ use yii\base\Object;
  * Request
  *
  * This class acts as a wrapper around cURL functions.
+ *
+ * @property string $url
  */
 class Request extends Object
 {
@@ -49,6 +51,15 @@ class Request extends Object
     private $_rawResponse;
 
     /**
+     * Cloning magic
+     */
+    public function __clone()
+    {
+        $this->_handle = null;
+        $this->setOptions([]);
+    }
+
+    /**
      * Shutdown sequence.
      * @return void
      */
@@ -79,10 +90,7 @@ class Request extends Object
     public function getHandle()
     {
         if ($this->_handle === null) {
-            if (empty($this->url)) {
-                throw new InvalidConfigException("Url must not be empty");
-            }
-            $this->_handle = curl_init($this->url);
+            $this->_handle = curl_init();
         }
         return $this->_handle;
     }
