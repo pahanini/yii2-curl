@@ -19,11 +19,6 @@ use yii\base\Object;
 class Request extends Object
 {
     /**
-     * @var null|string Request url
-     */
-    public $url;
-
-    /**
      * @var boolean Whether this request has been executed
      */
     private $_is_executed = false;
@@ -151,10 +146,17 @@ class Request extends Object
     }
 
     /**
-     * Sets an option for the request
+     * Returns url of request
      *
-     * On attempt to set CURLOPT_URL option function will change current [[$url]].
-     * So next call of [[getOptions]] will return array without CURLOPT_URL key.
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->getOption(CURLOPT_URL);
+    }
+
+    /**
+     * Sets an option for the request
      *
      * @param [] $options
      */
@@ -166,18 +168,12 @@ class Request extends Object
     /**
      * Sets an options for the request in massive way
      *
-     * On attempt to set CURLOPT_URL option function will change current [[$url]] and remove CURLOPT_URL
-     * from array. So next call of [[getOptions]] will return array without CURLOPT_URL key.
-     *
      * @param [] $options
      */
     public function setOptions(array $options)
     {
-        if (isset($options[CURLOPT_URL])) {
-            $this->url = $options[CURLOPT_URL];
-            unset($options[CURLOPT_URL]);
-        }
         $this->_options = $options + $this->_options;
+        curl_setopt_array($this->getHandle(), $this->_options);
     }
 
     /**
@@ -190,6 +186,16 @@ class Request extends Object
     {
         $this->_rawResponse = $value;
         $this->_is_executed = $isExecuted;
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string $value
+     */
+    public function setUrl($value)
+    {
+        return $this->setOption(CURLOPT_URL, $value);
     }
 
     /**
@@ -232,10 +238,13 @@ class Request extends Object
 
     /**
      * Sets url in chain style
+     *
+     * @param string $value
+     * @return \pahanini\curl\Request
      */
     public function url($value)
     {
-        $this->url = $value;
+        $this->setUrl($value);
         return $this;
     }
 }

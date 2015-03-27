@@ -7,6 +7,18 @@ use Yii;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
+    public function testOptions()
+    {
+        $request = new Request();
+        $request->url('http://httpbin.org');
+        $this->assertEquals('http://httpbin.org', $request->url);
+        $request->setOptions([
+           CURLOPT_REFERER => 'http://github.com'
+        ]);
+        $this->assertEquals('http://httpbin.org', $request->url);
+        $this->assertEquals('http://github.com', $request->getOption(CURLOPT_REFERER));
+    }
+
     public function testRawResponse()
     {
         $request = new Request([
