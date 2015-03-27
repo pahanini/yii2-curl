@@ -43,6 +43,8 @@ class Multi extends Object
 
     /**
      * Executes all added requests
+     *
+     * @throws \pahanini\curl\Exception
      */
     public function execute()
     {
@@ -65,12 +67,23 @@ class Multi extends Object
             }
             $active = null;
             do {
-                curl_multi_exec($multiHandle, $active);
-            } while ($active);
+                $code = curl_multi_exec($multiHandle, $active);
+            } while ($code == CURLM_CALL_MULTI_PERFORM);
 
+            while ($active && $code == CURLM_OK) {
+                if (curl_multi_select($multiHandle) === -1) {
+                    usleep(100);
+                }
+                do {
+                    $code = curl_multi_exec($multiHandle, $active);
+                } while ($code == CURLM_CALL_MULTI_PERFORM);
+            }
             foreach ($requests as $request) {
                 $request->setRawResponse(curl_multi_getcontent($request->getHandle()));
                 curl_multi_remove_handle($multiHandle, $request->getHandle());
+            }
+            if ($code !== CURLM_OK) {
+                throw new Exception("Error executing multi request, exit code = " . $code);
             }
         }
         curl_multi_close($multiHandle);
