@@ -11,51 +11,12 @@ A lightweight library with support for multiple requests.
 
 ## Usage
 
-Single request example:
-```php
-	$request = new Request();
-	$request->url('http://google.com')->execute();
-
-	$response = $request->getResponse();
-	echo $response->statusCode; // displays 200
-	echo $response->content; // displays content of the page
-```
-
-Multi request example:
-```php
-	$request1 = new Request();
-	$request1->url('http://google.com');
-
-	$request2 = new Request();
-	$request2->url('http://bing.com');
-
-	$multi = new Multi();
-	$multi->stackSize = 100; // all requests are stacked, set stack size here!
-	$multi->add($request1);
-	$multi->add($request2);
-	$multi->execute();
-
-	echo $response1->statusCode; // displays 200
-	echo $response2->statusCode; // displays 200
-```
-
-Set cURL options example and getting response headers:
-```php
-	$request = new Request();
-	$request->url('http://example.com')->setOptions([CURLOPT_USERAGENT => 'Custom']);
-	$response = $request->execute()->getResponse();
-
-	echo $response->getHeader('Content-Type'); // outputs Content-Type header value
-```
-
-Getting raw response example:
-```php
-	$request = new Request();
-	$rawResponse = $request->url('http://example.com')->execute()->getRawResponse();
-```
+- [Creating request](request.md)
+- [Sending request](send.md)
+- [Getting response](response.md)
 
 ## Testing
 
-- run `composer install`
-- run `codecept build`
-- run `codecept run`
+- `composer install`
+- `codecept build`
+- `codecept run`

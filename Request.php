@@ -71,6 +71,8 @@ class Request extends Object
     }
 
     /**
+     * Returns last error message.
+     *
      * @return string|null Retrieve the latest error.
      */
     public function getErrorMessage()
@@ -110,7 +112,7 @@ class Request extends Object
     }
 
     /**
-     * Returns option with given name
+     * Returns option with given name.
      *
      * @param string $name Name of the option
      * @param string $default Default value
@@ -122,7 +124,7 @@ class Request extends Object
     }
 
     /**
-     * Returns options array
+     * Returns options array.
      *
      * @return string
      */
@@ -142,7 +144,7 @@ class Request extends Object
     }
 
     /**
-     * Get the response
+     * Get the response.
      *
      * @return \pahanini\curl\Response
      */
@@ -165,7 +167,7 @@ class Request extends Object
     }
 
     /**
-     * Sets an option for the request
+     * Sets an option for the request.
      *
      * @param [] $options
      */
@@ -186,7 +188,7 @@ class Request extends Object
     }
 
     /**
-     * Sets a raw response
+     * Sets a raw response.
      *
      * @param string $value
      * @param boolean $isExecuted If change is_executed flag
@@ -209,7 +211,7 @@ class Request extends Object
     }
 
     /**
-     * Executes the request
+     * Executes the request.
      *
      * @throws Exception
      * @throws InvalidConfigException
@@ -225,7 +227,7 @@ class Request extends Object
     }
 
     /**
-     * Whether the request has been executed
+     * Whether the request has been executed.
      *
      * @return boolean
      */
