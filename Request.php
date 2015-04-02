@@ -8,6 +8,7 @@
 
 namespace pahanini\curl;
 
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Object;
 
@@ -21,7 +22,14 @@ use yii\base\Object;
 class Request extends Object
 {
     /**
-     * @var boolean Whether this request has been executed
+     * @var string Response config.
+     */
+    public $responseConfig = [
+        'class' => '\pahanini\curl\Response'
+    ];
+
+    /**
+     * @var boolean Whether this request has been executed.
      */
     private $_is_executed = false;
 
@@ -46,7 +54,7 @@ class Request extends Object
     private $_response;
 
     /**
-     * @var mixed Raw response
+     * @var mixed Raw response.
      */
     private $_rawResponse;
 
@@ -151,7 +159,7 @@ class Request extends Object
     public function getResponse()
     {
         if (!$this->_response) {
-            $this->_response = new Response(['request' => $this]);
+            $this->_response = Yii::createObject(array_merge($this->responseConfig, ['request' => $this]));
         }
         return $this->_response;
     }

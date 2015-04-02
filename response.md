@@ -18,3 +18,13 @@ Working with response examples:
 	$response->getHeader('Content-Type');
 	$response->getHeader('Content-Type', 'default value');
 ```
+
+Replacing default response class:
+ 
+```php
+	$request->responseConfig = ['class' => '\my\Class'];
+	$response = $request->execute()->getResponse();
+
+	$response->doSomethingAmazing();
+```
+ 
