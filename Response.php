@@ -40,7 +40,7 @@ class Response extends Object
     {
         parent::init();
         if (!$this->_request) {
-            throw new InvalidConfigException("Empty request ");
+            throw new InvalidConfigException("Empty request");
         }
         $request = $this->getRequest();
         $headerSize = $request->getInfo(CURLINFO_HEADER_SIZE);
