@@ -50,8 +50,10 @@ class Response extends Object
             $headers = rtrim(substr($response, 0, $headerSize));
             $headers = array_slice(preg_split('/(\\r?\\n)/', $headers), 1);
             foreach ($headers as $header) {
-                list($name, $value) = explode(': ', $header);
-                $this->_headers[$name] = $value;
+                $tmp = explode(': ', $header);
+                if (count($tmp) == 2) {
+                    $this->_headers[$tmp[0]] = $tmp[1];
+                }
             }
         }
     }
