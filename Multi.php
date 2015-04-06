@@ -28,11 +28,12 @@ class Multi extends Object
      */
     private $_requests = array();
 
-    /**
-     * Adds a Request
-     *
-     * @param \pahanini\curl\Request $request
-     */
+	/**
+	 * Adds a Request
+	 *
+	 * @param \pahanini\curl\Request $request
+	 * @throws \yii\base\InvalidParamException
+	 */
     public function add(Request $request)
     {
         if ($request->isExecuted()) {
