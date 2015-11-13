@@ -175,6 +175,16 @@ class Request extends Object
     }
 
     /**
+     * Executes request and returns response
+     *
+     * @return \pahanini\curl\Response
+     */
+    public function send()
+    {
+        $this->execute()->getResponse();
+    }
+
+    /**
      * Sets an option for the request.
      *
      * @param [] $options

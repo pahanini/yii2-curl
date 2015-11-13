@@ -14,6 +14,9 @@ It's simple
 	
 	$request = new Request();
 	// set required options here
+	
+	$response = $request->send();
+	// or
 	$response = $request->execute()->getResponse();
 ```
 
