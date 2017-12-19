@@ -10,7 +10,7 @@ namespace pahanini\curl;
 
 use Yii;
 use yii\base\InvalidConfigException;
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Request
@@ -19,7 +19,7 @@ use yii\base\Object;
  *
  * @property string $url
  */
-class Request extends Object
+class Request extends BaseObject
 {
     /**
      * @var string Response config.

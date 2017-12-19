@@ -11,12 +11,12 @@ namespace pahanini\curl;
 use yii\base\InvalidCallException;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * This class acts as a wrapper around cURL multi functions
  */
-class Multi extends Object
+class Multi extends BaseObject
 {
     /**
      * @var int Stack size of requests

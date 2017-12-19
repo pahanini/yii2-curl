@@ -9,14 +9,14 @@
 namespace pahanini\curl;
 
 use yii\base\InvalidConfigException;
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Response
  *
  * Represents an HTTP response.
  */
-class Response extends Object
+class Response extends BaseObject
 {
     /**
      * @var string keeps page content
